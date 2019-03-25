@@ -42,4 +42,32 @@ def WF_efic(alfa,kapa,frecuencia,T):
 Proceso = WF_efic(0,0.25,0.5,2)
 x = Proceso[0]
 y = Proceso[1]
-grafica(x,y)
+#grafica(x,y)
+fig, ax = plt.subplots()
+xdata, ydata = [], []
+ln, = plt.plot([], [], 'b-')
+
+def init():
+    ax.set_xlim(0, 2)
+    ax.set_ylim(0, 1)
+    return ln,
+
+def update(frame):
+    ln.set_data(x,y)
+    return ln,
+
+
+def update(frame):
+    xdata.append(x[frame])
+    ydata.append(y[frame])
+    ln.set_data(xdata, ydata)
+    return ln,
+ani = FuncAnimation(fig, update, frames=range(len(x)),init_func=init, blit=True,interval = 20,repeat = True ,repeat_delay = 2)
+
+plt.xlabel('t')
+plt.ylabel('Xt')
+plt.title('Wright Fisher with-efficiency k')
+plt.show()
+
+
+
