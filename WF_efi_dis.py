@@ -83,10 +83,25 @@ def Frecuencia(Proceso):
 		vector.append(Y_n(Proceso[i]))
 	return vector
 
-#X_n = Proceso1(300)
-X_n = Proceso2(300)
-Y = Frecuencia(X_n)
-x = np.linspace(0,len(X_n),len(X_n))
-grafica(x,Y)
 
+x = 0.5 #frecuencia de los eficientes
+def PROCESO(n):
+        proceso = [x]
+        for i in range(n):
+                vector_aux = []
+                while Consumo(vector_aux) < N:
+                        vector_aux.append(Bernoulli(proceso[i]))
+                proceso.append(Y_n(vector_aux))
+                if proceso[i] == 1 or proceso[i]==0:
+                        break
+        return proceso
+#X_n = Proceso1(300)
+#X_n = Proceso2(300)
+#Y = Frecuencia(X_n)
+#x = np.linspace(0,len(X_n),len(X_n))
+#grafica(x,Y)
+
+y = PROCESO(500)
+x= np.linspace(0,len(y),len(y))
+grafica(x,y)
 
