@@ -36,7 +36,6 @@ def frecuencia(vector):
 		if vector[i] == 1:
 			suma = suma + 1
 	return (suma)/len(vector)
-
 def WF(k1,k2,s1,s2):
         proceso = [x1]
         i = 0
@@ -44,7 +43,7 @@ def WF(k1,k2,s1,s2):
                 vector_aux = []
                 while consumo(k1,k2,vector_aux) < N:
                         x = proceso[i]
-                        p = ((1+s1)*x)/((1-s1)*x+(1+s2)*(1-x))
+                        p = ((1+s1)*x)/((1+s1)*x+(1+s2)*(1-x))
                         vector_aux.append(Bernoulli(p))
                 proceso.append(frecuencia(vector_aux))
                 i=i+1
@@ -52,10 +51,29 @@ def WF(k1,k2,s1,s2):
                         break
         return proceso
 
+
+
+def WF_frec(k1,k2,s1,s2):
+        frec = x1
+        while frec!=0 or frec !=1:
+                vector_aux = []
+                while consumo(k1,k2,vector_aux) < N:
+                        x = frec
+                        p = ((1+s1)*x)/((1+s1)*x+(1+s2)*(1-x))
+                        vector_aux.append(Bernoulli(p))
+                frec = frecuencia(vector_aux)
+                if frec == 1 or frec==0:
+                        break
+        return frec
+
 def ganador(k1,k2,s1,s2):
-        Proceso =  WF(k1,k2,s1,s2)
-        return Proceso[-1]
-p = parametros       
-y = WF(p[0],p[1],p[2],p[3])
-x= np.linspace(0,len(y),len(y))
-grafica(x,y)
+        return WF_frec(k1,k2,s1,s2)
+
+
+#p = parametros       
+#y = WF(p[0],p[1],p[2],p[3])
+#x= np.linspace(0,len(y),len(y))
+#grafica(x,y)
+
+
+
