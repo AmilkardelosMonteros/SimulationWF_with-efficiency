@@ -75,5 +75,42 @@ def ganador(k1,k2,s1,s2):
 #x= np.linspace(0,len(y),len(y))
 #grafica(x,y)
 
+def distribucion1(x,y):
+        x1 = x + random.random()
+        y1 = y + random.random()
+        return x1,y1
+
+def distribucion2(r):
+        v = True
+        while v:
+                x = random.random()
+                y = random.random()
+                if x**2 + y**2 <= r**2:
+                        v = False
+        return x,y
+
+def Caminata(n):
+        trayectoria = [[0,0]]
+        for i in range(n):
+                retador = distribucion2(1)
+                vence = ganador(trayectoria[-1][0],trayectoria[-1][0],retador[0],retador[1])
+                if vence == 0:
+                        trayectoria.append([retador[0],retador[1]])
+        return trayectoria 
+                
+                
+def dibuja_caminata(trayectoria):
+        x = []
+        y = []
+        for i in range(len(trayectoria)):
+                v = trayectoria[i]
+                x.append(v[0])
+                y.append(v[1])
+        graficaC(x,y)
+
+C=Caminata(20)        
+#print(C)
+dibuja_caminata(C)
+
 
 
