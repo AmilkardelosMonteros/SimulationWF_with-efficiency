@@ -83,11 +83,12 @@ def distribucion1(x,y):
 def distribucion2(r):
         v = True
         while v:
-                x = random.random()
-                y = random.random()
+                x = random.random()-1/2
+                y = random.random()-1/2
                 if x**2 + y**2 <= r**2:
                         v = False
         return x,y
+
 
 def Caminata(n):
         trayectoria = [[0,0]]
