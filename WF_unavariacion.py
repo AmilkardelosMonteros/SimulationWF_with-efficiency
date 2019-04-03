@@ -13,14 +13,12 @@ def grafica(x,y):
 	plt.ylabel('Xt')
 	plt.title('Wright Fisher_'+'k1='+str(parametros[0])+',k2='+str(parametros[1])+',s1='+str(parametros[2])+',s2='+str(parametros[3]))
 	plt.show()
-	
 def graficaC(x,y):
     plt.plot(x,y,color='blue')
     plt.xlabel('t')
     plt.ylabel('Zt')
     plt.title('Caminata aleatoria en KxS')
     plt.show()
-
 def consumo(k1,k2,vector):
         suma = 0
         for i in range(len(vector)):
@@ -29,11 +27,8 @@ def consumo(k1,k2,vector):
                 else:
                         suma = suma + (1-k2)
         return suma
-
-
 def frecuencia(vector):
         return sum(vector)/len(vector)
-
 def ganador(k1,k2,s1,s2):
         frec = x1
         while frec!=0 or frec !=1:
@@ -46,7 +41,6 @@ def ganador(k1,k2,s1,s2):
                 if frec == 1 or frec==0:
                         break
         return frec
-
 def distribucion2():
         v = True
         while v:
@@ -55,7 +49,6 @@ def distribucion2():
                 if x**2 + y**2 <= 1:
                         v = False
         return x,y
-
 def Caminata(n):
         trayectoria = [[0,0]]
         for i in range(n):
@@ -64,8 +57,6 @@ def Caminata(n):
                 if vence == 0:
                         trayectoria.append([retador[0],retador[1]])
         return trayectoria 
-                
-                
 def dibuja_caminata(trayectoria):
         x = []
         y = []
@@ -74,7 +65,6 @@ def dibuja_caminata(trayectoria):
                 x.append(v[0])
                 y.append(v[1])
         graficaC(x,y)
-
 C=Caminata(10)        
 #print(C)
 dibuja_caminata(C)
