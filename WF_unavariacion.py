@@ -27,17 +27,15 @@ def consumo(k1,k2,vector):
 def frecuencia(vector):
         return sum(vector)/len(vector)
 
-def ganador(k1,k2,s1,s2):
+def ganador(k1,s1,k2,s2):
         frec = x1
-        while frec!=0 or frec !=1:
+        while frec!=0 and frec !=1:
                 vector_aux = []
                 while consumo(k1,k2,vector_aux) < N:
                         x = frec
                         p = ((1+s1)*x)/((1+s1)*x+(1+s2)*(1-x))
                         vector_aux.append(np.random.binomial(1,p,1))
                 frec = frecuencia(vector_aux)
-                if frec == 1 or frec==0:
-                        break
         return frec
 
 def distribucion2():
@@ -49,12 +47,19 @@ def distribucion2():
                         v = False
         return x,y
 
+def distribucion3(eps1,eps2):
+        return eps1*np.random.uniform(-1,1,1),eps2*np.random.uniform(-1,1,1)
+
 def Caminata(n):
         trayectoria = [[0,0]]
         for i in range(n):
                 retador = distribucion2()
-                if ganador(trayectoria[-1][0],trayectoria[-1][0],retador[0],retador[1]) == 0:
+                vence = ganador(trayectoria[-1][0],trayectoria[-1][1],retador[0],retador[1]) #k1,s1,k2,s2
+                if vence == 0:
                         trayectoria.append([retador[0],retador[1]])
+                else:
+                        trayectoria.append([trayectoria[-1][0],trayectoria[-1][1]])
+                        
         return trayectoria 
 
 def dibuja_caminata(trayectoria):
