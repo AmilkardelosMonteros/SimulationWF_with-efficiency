@@ -50,12 +50,12 @@ def distribucion2():
 def distribucion3(eps1,eps2):
         return eps1*np.random.uniform(-1,1,1),eps2*np.random.uniform(-1,1,1)
 
+
 def Caminata(n):
         trayectoria = [[0,0]]
         for i in range(n):
                 retador = distribucion2()
-                vence = ganador(trayectoria[-1][0],trayectoria[-1][1],retador[0],retador[1]) #k1,s1,k2,s2
-                if vence == 0:
+                if ganador(trayectoria[-1][0],trayectoria[-1][1],retador[0],retador[1]) == 0:#k1,s1,k2,s2
                         trayectoria.append([retador[0],retador[1]])
                 else:
                         trayectoria.append([trayectoria[-1][0],trayectoria[-1][1]])
