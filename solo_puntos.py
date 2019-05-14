@@ -1,9 +1,8 @@
+#!/usr/bin/python
 import numpy as np
-import numpy as np
-
+import matplotlib.pyplot as plt
 x1 = 0.5
-
-N = 100
+N = 1000
 
 def ganador(k1,s1,k0,s0):
     x = x1
@@ -20,21 +19,19 @@ def ganador(k1,s1,k0,s0):
         x=float(D)/M
     return x
 
-
-
 def puntos(n,m,repeticiones):
-    S = np.linspace(-0.05,0.05,n)
-    K = np.linspace(0.3,0.7,m)
-    Informacion = []
+    archivo = open('un_archivo.txt','w')
+    S = np.linspace(-0.005,0.005,n)
+    K = np.linspace(0.1,0.9,m)
     for s in S:
         for k in K:
             porcentaje_ganador = 0
             for i in range(int(repeticiones)):
                 g = ganador(k,s,0,0)
-                print(g)
                 if g == 1:
                     porcentaje_ganador += 1/repeticiones
-            Informacion.append([s,k,porcentaje_ganador])
-    return Informacion
+            archivo.write(str([s,k,porcentaje_ganador]) + ',')
+    archivo.close()
 
-P = puntos(3,3,5.0)
+P = puntos(20,20,500.0)
+
