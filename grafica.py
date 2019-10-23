@@ -51,8 +51,8 @@ def dibuja_puntos(arreglo):
     ax.spines['bottom'].set_position('zero')
     ax.spines['top'].set_color('none')
     adjust_spines(ax, ['left', 'bottom'])
-    plt.xlabel('$ s_1 $', fontsize = 32)
-    plt.ylabel('$d_1$', fontsize = 32)
+    plt.xlabel('$ s $', fontsize = 32)
+    plt.ylabel('$\kappa$', fontsize = 32)
     cmap = mpl.cm.jet
     cmap_r = reverse_colourmap(cmap)
     ax1 = fig.add_axes([0.91, 0.1, 0.02, 0.8])
