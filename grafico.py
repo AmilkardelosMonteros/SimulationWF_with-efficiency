@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-X = np.loadtxt('Eficiencia_u1_0.01_u2_0.001.txt')
+#X = np.loadtxt('Eficiencia_u1_0.01_u2_0.001.txt')
 
 
 def grafica(a):
