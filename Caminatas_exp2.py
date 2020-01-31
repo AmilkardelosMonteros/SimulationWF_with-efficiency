@@ -27,6 +27,11 @@ def probafixM1(a, k, y):
 def probabilidades(s,k):
     s_barra =  u2/(1+s)
     s_barra_neg  = -u2/(1+s)
+    k_gorro = u1/(1-k)
+    flag = False
+    if k_gorro > 1:
+        flag = True
+        #import pdb; pdb.set_trace()
     p_mas_mas  = probafixWF(s_barra,frec_inicial)
     p_menos_mas = p_mas_mas 
     p_menos_menos = probafixWF(s_barra_neg,frec_inicial)
