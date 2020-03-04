@@ -12,7 +12,7 @@ def grafica(a):
         tem = a[i]
         x.append(tem[0])
         y.append(tem[1])
-    plt.xlim(-0.07,0.07)
+    plt.xlim(-1.2,1.2)
     plt.ylim(-0.2,1.2)
     plt.plot(x,y,'o',alpha = 0.05)
     plt.show()
