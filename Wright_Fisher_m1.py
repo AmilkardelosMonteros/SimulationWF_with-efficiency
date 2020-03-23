@@ -1,18 +1,18 @@
 #!/usr/bin/python
 import sys
-from multiprocessing import Pool
+import os
 import numpy as np
 import time
-param = sys.argv[1]
-Param = int(param)
+N = int(sys.argv[1])
+s = float(sys.argv[2])/float(N)
+rep = int(sys.argv[3])
+k = float(sys.argv[4])
 x1 = 0.5
-N = 1000
-
-def ganador(parametros):
-    k1 = parametros[0]
-    s1 = parametros[1]
-    k0 = parametros[2]
-    s0 = parametros[3]
+print('Corriendo Simulacion los siguientes parametros:')
+print(N,s,rep,k)
+def ganador(N,s,k):
+    s1 = s
+    k0 = k
     x = x1
     while x > 0 and x < 1:
         C = 0
@@ -20,37 +20,26 @@ def ganador(parametros):
 	M = 0
 	while C < N:
             f = x
-            A = np.random.RandomState().binomial(1,((1+s1)*f)/((1+s1)*f+(1+s0)*(1-f)))
+            A = np.random.binomial(1,((1+s1)*f)/((1+s1)*f+(1-f)))
             D += A
-            C += A*(1-k1) + (1-A)*(1-k0)
+            C += A + (1-A)*(1-k0)
             M += 1
         x=float(D)/M
     return x
 
-def proba(k,s,repeticiones):
-    p = Pool()
-    parametros = [k,s,0,0]
-    iter = []
-    for i in range(repeticiones):
-        iter.append(parametros)
-    informacion = p.map(ganador,iter)
-    todo = [s,k,np.mean(informacion),np.var(informacion)]
-    return todo
-
-def puntos(n,m,repeticiones,numero,nombre):
-    S = np.linspace(-0.025,0.025,n)
-    s = S[numero]
-    K = np.linspace(0,0.9,m)
+def proba(N,s,rep,k):
+    nombre = 'EfectodeN'+'_N_' + str(N)+ '_rep_'+ str(rep) + '_s_' + str(s) + '_k_' + str(k) +'.txt'
     archivo = open(nombre,'a')
-    for k in K:
-        WF = proba(k,s,repeticiones)
-        archivo.write(str(WF) + ',')
+    if os.stat(nombre).st_size == 0:
+        np.savetxt(nombre,[0])
+    iter = np.loadtxt(nombre)
     archivo.close()
-    
-def funcion(numero):
-    nombre = 'un_archivo' + str(int(numero)) + '.txt'
-    #archivo = open(nombre,'w')
-    #archivo.close()
-    puntos(20,20,1000,numero,nombre)
+    for i in range(rep):
+        archivo = open(nombre,'a')
+        iter = np.append(iter,ganador(N,s,k))
+        np.savetxt(nombre,iter[1:])
+        archivo.close()
 
-funcion(Param)
+
+
+proba(N,s,rep,k)
