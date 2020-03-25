@@ -60,5 +60,5 @@ def dibuja_puntos(arreglo):
     cb1 = mpl.colorbar.ColorbarBase(ax1, cmap = cmap_r, norm=norm,orientation='vertical')
     plt.show()
 
-
-dibuja_puntos(x)
+#Aqui x debe ser un vector de informacion 400 vectores de 4 entradas 
+#dibuja_puntos(x)
