@@ -19,7 +19,6 @@ def adjust_spines(ax, spines):
     if 'bottom' in spines:
         ax.xaxis.set_ticks_position('bottom')
     else:
-        # no xaxis ticks
         ax.xaxis.set_ticks([])
 def reverse_colourmap(cmap, name = 'my_cmap_r'):       
     reverse = []
